@@ -26,11 +26,15 @@ cat << "EOF"
 
 EOF
 echo -e "${GREEN}"
-
-options=("installation" "remove-lock"   "Quit")
+##################################installation starts ######################################
+options=("install passwordless sudo" "installation" "remove-lock"   "Quit")
 select opt in "${options[@]}"
 do
     case $opt in
+    	"install passwordless sudo")
+        sudo apt install -y kali-grant-root && sudo dpkg-reconfigure kali-grant-root
+        ;;
+
 
   "installation") 
 
@@ -243,27 +247,49 @@ if [ "$typori" ]; then
 		sudo apt-get install typora
 fi
 
+
+#the fat rat installation
+ftr=$(ls /usr/share | grep "TheFatRat")
+if [ "$ftr" ]; then
+  echo -e "${RED}you have already installed TheFatRat  skipping installation"
+  else
+  	cd /usr/share
+  	sudo apt install xterm
+  sudo git clone https://github.com/Screetsec/TheFatRat.git
+  cd TheFatRat
+  sudo chmod +x setup.sh && sudo  ./setup.sh
+  cd /usr/share/TheFatRat && ./update && sudo chmod +x setup.sh &&sudo  ./setup.sh
+
+  cd ~
+
+fi
 # remina remote desktop installation ${GREEN}
 remid=$(dpkg -l | grep "remmina")
 if [ "$remid" ]; then 
-	echo -e "${RED}you have already installed remmina skipping installation ${GREEN}"
 	
-	for i in `seq 85 100`; do    # for 1 to 100, save cursor, restore, output, restore
-    printf "\033[s\033[u Progress: %s %3d %% \033[u" "${str:0:$(((i+1)/2))}" "$i"
-    sleep 0.1  
-    done
-	
+	echo -e "${RED}you have already installed  remmina skipping installation ${GREEN}"
 	else 
 		echo 'deb http://ftp.debian.org/debian stretch-backports main' | sudo tee --append /etc/apt/sources.list.d/stretch-backports.list >> /dev/null
 		sudo apt update
 		sudo apt install -t stretch-backports remmina remmina-plugin-rdp remmina-plugin-secret remmina-plugin-spice
 		sudo rm -r /etc/apt/sources.list.d/stretch-backports.list
 fi
-
+vey=$(dpkg -l | grep "veil")
+if [ "$vey" ]; then
+echo -e "${RED}you have already installed  veil evasion Framework skipping installation ${GREEN}"
+	
+	for i in `seq 85 100`; do    # for 1 to 100, save cursor, restore, output, restore
+    printf "\033[s\033[u Progress: %s %3d %% \033[u" "${str:0:$(((i+1)/2))}" "$i"
+    sleep 0.1  
+    done
+else 
+apt -y install veil
+/usr/share/veil/config/setup.sh --force --silent
+fi
 echo -e " \n"
-echo -e "\n installation completed "
+echo -e "\n ${GREEN} installation completed "
  ;;
-
+#########################################lock starts############################################################################
   "remove-lock") 
     lck=$( ls /var/lib/dpkg/lock | grep "lock" )
 
@@ -282,10 +308,12 @@ echo -e "\n installation completed "
     fi
 ;;
 
-
+#####################################quit######################################################################################
 "Quit")
-            break
-            ;;
-        *) echo invalid option;;
+   break
+   ;;
+*) 
+echo invalid option
+;;
     esac
 done
