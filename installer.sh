@@ -148,8 +148,8 @@ if [ "$figg" ]; then
 		cd /usr/share
 		wget ftp://ftp.figlet.org/pub/figlet/program/unix/figlet-2.2.5.tar.gz 
 		tar -xvf  figlet-2.2.5.tar.gz
-		cd ..
 		rm figlet-2.2.5.tar.gz
+		cd ..
 fi
 if [ "$figg" ]; then
 	echo -e "${RED}you have already installed lolcat skipping installation ${GREEN}"
@@ -274,6 +274,7 @@ if [ "$remid" ]; then
 		sudo apt install -t stretch-backports remmina remmina-plugin-rdp remmina-plugin-secret remmina-plugin-spice
 		sudo rm -r /etc/apt/sources.list.d/stretch-backports.list
 fi
+
 vey=$(dpkg -l | grep "veil")
 if [ "$vey" ]; then
 echo -e "${RED}you have already installed  veil evasion Framework skipping installation ${GREEN}"
