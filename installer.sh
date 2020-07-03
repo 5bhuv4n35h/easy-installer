@@ -206,6 +206,15 @@ if [ "$rvnc" ]; then
 
 		sudo dpkg -i  VNC-Viewer-*.deb
 fi
+#anydeskinstall
+anydesk1=$(dpkg -l | grep "anydesk")
+if [ "$anydesk1"]; then
+echo -e "\n installing anydesk"
+wget -qO - https://keys.anydesk.com/repos/DEB-GPG-KEY | apt-key add -
+echo "deb http://deb.anydesk.com/ all main" > /etc/apt/sources.list.d/anydesk-stable.list
+apt update
+apt install anydesk
+echo -e "completed installing anydesk"
 #empire install
 emp1=$(ls /opt | grep "Empire")
 if [ "$emp1" ]; then
