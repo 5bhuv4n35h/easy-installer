@@ -27,7 +27,7 @@ cat << "EOF"
 EOF
 echo -e "${GREEN}"
 ##################################installation starts ######################################
-options=("install passwordless sudo" "installation" "remove-lock"   "Quit")
+options=("install passwordless sudo" "installation" "remove-lock"  "install apt https" "Quit")
 select opt in "${options[@]}"
 do
     case $opt in
@@ -308,7 +308,19 @@ echo -e "\n ${GREEN} installation completed "
 	echo -e "\n sucess"
     fi
 ;;
-
+#############################################apt-https########################################################
+"install apt https")
+echo " changing apt to https from https makes the apt process faster"
+sudo apt-get install apt-transport-https -y
+echo " changing nameserver increases overall speed "
+echo -e " \n nameserver 8.8.8.8 \n nameserver 8.8.4.4 "
+echo " copy the code and replace it /etc/resolv.conf"
+echo "openning /etc/resolv.conf in 20 seconds"
+sleep 20
+echo " ctrl+x to save"
+sudo nano /etc/resolv.conf
+echo "changed resolv.conf and installed https for deb installation"
+;;
 #####################################quit######################################################################################
 "Quit")
    break
