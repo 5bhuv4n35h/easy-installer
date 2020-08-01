@@ -314,13 +314,10 @@ echo -e "\n ${GREEN} installation completed"
 #############################################apt-https########################################################
 "install apt https")
 echo " changing apt to https from https makes the apt process faster"
+sudo apt update 
 sudo apt-get install apt-transport-https -y
 echo " changing nameserver increases overall speed "
-echo -e " \n nameserver 8.8.8.8 \n nameserver 8.8.4.4 "
-echo " copy the code and replace it /etc/resolv.conf"
-echo "openning /etc/resolv.conf in 20 seconds"
-sleep 20
-echo " ctrl+x to save"
+sudo echo -e "  \n nameserver 8.8.8.8 \n  nameserver 8.8.4.1">> sudo /etc/resolv.conf
 sudo nano /etc/resolv.conf
 echo "changed resolv.conf and installed https for deb installation"
 ;;
