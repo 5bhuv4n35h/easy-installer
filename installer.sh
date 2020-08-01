@@ -323,11 +323,18 @@ echo "changed resolv.conf and installed https for deb installation"
 ;;
 #######upgradeos#############
 "upgradeos")
+echo -e "\n checking for updates "
 sudo apt  update
+clear
+echo -e "\n  showing list of upgradable"
 sudo apt list --upgradable
+echo -e "\n upgrading os "
 sudo apt upgrade
+echo -e "upgrading distro"
 sudo apt dist-upgrade
+echo -e "removing abandoned  packages" 
 sudo apt autoremove
+echo -e "completed upgrade "
 ;;
 #######################fancy bash prompt ######################################################
 "fancy bash prompt installer")
