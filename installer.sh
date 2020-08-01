@@ -29,7 +29,7 @@ echo -e "${GREEN}"
 
 
 ##################################installation starts ######################################
-options=("install passwordless sudo" "installation" "remove-lock"  "install apt https" "fancy bash prompt installer" "Quit")
+options=("install passwordless sudo" "install packages" "remove-lock"  "install apt https" "fancy bash prompt installer" "Quit")
 select opt in "${options[@]}"
 do
     case $opt in
@@ -38,7 +38,7 @@ do
         ;;
 
 
-  "installation") 
+  "install packages") 
 
 printf "\033[K"             # clear to end-of-line
 
@@ -326,10 +326,8 @@ echo "changed resolv.conf and installed https for deb installation"
 ;;
 #######################fancy bash prompt ######################################################
 "fancy bash prompt installer")
-cd /tmp 
-git clone https://github.com/petobens/trueline.git
-cd trueline
-echo 'source ~/trueline/trueline.sh' >> ~/.bashrc
+cd /tmp && git clone https://github.com/petobens/trueline.git && cd trueline &&echo 'source ~/trueline/trueline.sh' >> ~/.bashrc
+
 ;;
 #####################################quit######################################################################################
 "Quit")
