@@ -73,6 +73,8 @@ if [ "$win" ]; then
 		sudo apt update
 		sudo apt install wine:i386
 		sudo apt install wine-bin:i386
+		sudo apt-get install wine32
+
 fi
 
 shel=$(dpkg -l | grep "shellter")
