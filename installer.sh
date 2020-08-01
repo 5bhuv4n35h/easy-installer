@@ -147,13 +147,14 @@ if [ "$figg" ]; then
  	
  	else
 	#figlet installation ${GREEN}
-		cd /usr/share
-		wget ftp://ftp.figlet.org/pub/figlet/program/unix/figlet-2.2.5.tar.gz 
-		tar -xvf  figlet-2.2.5.tar.gz
-		rm figlet-2.2.5.tar.gz
+		sudo cd /usr/share
+		sudo wget ftp://ftp.figlet.org/pub/figlet/program/unix/figlet-2.2.5.tar.gz 
+		sudo tar -xvf  figlet-2.2.5.tar.gz
+		sudo rm figlet-2.2.5.tar.gz
 		cd ..
 fi
-if [ "$figg" ]; then
+lolca=$(ls /usr/share| grep "lolcat")
+if [ "$lolca" ]; then
 	echo -e "${RED}you have already installed lolcat skipping installation ${GREEN}"
 	for i in `seq 60 75`; do    # for 1 to 100, save cursor, restore, output, restore
     printf "\033[s\033[u Progress: %s %3d %% \033[u" "${str:0:$(((i+1)/2))}" "$i"
