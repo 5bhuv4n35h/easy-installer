@@ -152,6 +152,7 @@ if [ "$figg" ]; then
 		sudo tar -xvf  figlet-2.2.5.tar.gz
 		sudo rm figlet-2.2.5.tar.gz
 		cd ..
+		cd ~
 fi
 lolca=$(ls /usr/share| grep "lolcat")
 if [ "$lolca" ]; then
@@ -170,6 +171,7 @@ if [ "$lolca" ]; then
 		cd /usr/share
         sudo git clone https://github.com/xero/figlet-fonts
 		mv figlet-fonts/* figlet && rm –rf figlet-fonts
+		cd ~
 fi
 #scrot installation ${GREEN}
 scre=$(dpkg -l | grep "scrot")
