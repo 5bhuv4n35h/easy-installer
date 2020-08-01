@@ -330,6 +330,7 @@ cd /tmp
 git clone https://github.com/petobens/trueline.git
 cd trueline
 echo 'source ~/trueline/trueline.sh' >> ~/.bashrc
+;;
 #####################################quit######################################################################################
 "Quit")
    break
