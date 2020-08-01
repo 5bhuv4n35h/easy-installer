@@ -298,7 +298,7 @@ apt -y install veil
 fi
 echo -e " \n"
 echo -e "\n ${GREEN} installation completed "
- ;;
+;;
 #########################################lock starts############################################################################
   "remove-lock") 
     lck=$( ls /var/lib/dpkg/lock | grep "lock" )
