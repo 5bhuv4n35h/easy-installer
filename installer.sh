@@ -26,6 +26,8 @@ cat << "EOF"
 
 EOF
 echo -e "${GREEN}"
+
+
 ##################################installation starts ######################################
 options=("install passwordless sudo" "installation" "remove-lock"  "install apt https" "Quit")
 select opt in "${options[@]}"
@@ -42,54 +44,6 @@ printf "\033[K"             # clear to end-of-line
 
 tput cnorm  
 
-insta
-
-echo -e " \n"
-echo -e "\n ${GREEN} installation completed "
-;;
-#########################################lock starts############################################################################
-  "remove-lock") 
-    lck=$( ls /var/lib/dpkg/lock | grep "lock" )
-
-    if [ "$lck" ]; then
-    	echo -e "sorry no lock has been detected u can run 1 to continue installation" 
-    else
-	sudo rm  /var/lib/dpkg/lock-frontend 
-	sudo rm /var/lib/dpkg/lock
-	sudo rm /var/cache/apt/archives/lock
-	sudo rm /var/lib/apt/lists/lock
-	for i in `seq  1 100`; do    # for 1 to 100, save cursor, restore, output, restore
-    printf "\033[s\033[u removing  lock in Progress: %s %3d %% \033[u" "${str:0:$(((i+1)/2))}" "$i"
-    sleep 0.1               # small delay
-    done
-	echo -e "\n sucess"
-    fi
-;;
-#############################################apt-https########################################################
-"install apt https")
-echo " changing apt to https from https makes the apt process faster"
-sudo apt-get install apt-transport-https -y
-echo " changing nameserver increases overall speed "
-echo -e " \n nameserver 8.8.8.8 \n nameserver 8.8.4.4 "
-echo " copy the code and replace it /etc/resolv.conf"
-echo "openning /etc/resolv.conf in 20 seconds"
-sleep 20
-echo " ctrl+x to save"
-sudo nano /etc/resolv.conf
-echo "changed resolv.conf and installed https for deb installation"
-;;
-#####################################quit######################################################################################
-"Quit")
-   break
-   ;;
-*) 
-echo "invalid option";
-;;
-
-    esac
-done
-insta()
-{
 # powershell installation ${GREEN}
 psh=$(dpkg -l | grep "powershell")
 if [ "$psh" ]; then
@@ -257,12 +211,16 @@ fi
 #anydeskinstall
 anydesk1=$(dpkg -l | grep "anydesk")
 if [ "$anydesk1"]; then
-echo -e "\n installing anydesk"
+
+echo "anydesk not installed"
+else
+	echo -e "\n installing anydesk"
 wget -qO - https://keys.anydesk.com/repos/DEB-GPG-KEY | apt-key add -
 echo "deb http://deb.anydesk.com/ all main" > /etc/apt/sources.list.d/anydesk-stable.list
 apt update
 apt install anydesk
 echo -e "completed installing anydesk"
+fi
 #empire install
 emp1=$(ls /opt | grep "Empire")
 if [ "$emp1" ]; then
@@ -325,24 +283,54 @@ remid=$(dpkg -l | grep "remmina")
 if [ "$remid" ]; then 
 	
 	echo -e "${RED}you have already installed  remmina skipping installation ${GREEN}"
-	else 
-		echo 'deb http://ftp.debian.org/debian stretch-backports main' | sudo tee --append /etc/apt/sources.list.d/stretch-backports.list >> /dev/null
+    else 
+	 echo 'deb http://ftp.debian.org/debian stretch-backports main' | sudo tee --append /etc/apt/sources.list.d/stretch-backports.list >> /dev/null
 		sudo apt update
 		sudo apt install -t stretch-backports remmina remmina-plugin-rdp remmina-plugin-secret remmina-plugin-spice
 		sudo rm -r /etc/apt/sources.list.d/stretch-backports.list
 fi
 
-vey=$(dpkg -l | grep "veil")
-if [ "$vey" ]; then
-echo -e "${RED}you have already installed  veil evasion Framework skipping installation ${GREEN}"
-	
-	for i in `seq 85 100`; do    # for 1 to 100, save cursor, restore, output, restore
-    printf "\033[s\033[u Progress: %s %3d %% \033[u" "${str:0:$(((i+1)/2))}" "$i"
-    sleep 0.1  
-    done
-else 
-apt -y install veil
-/usr/share/veil/config/setup.sh --force --silent
+echo -e " \n"
+echo -e "\n ${GREEN} installation completed"
+;;
+#########################################lock starts############################################################################
+  "remove-lock") 
+    lck=$( ls /var/lib/dpkg/lock | grep "lock" )
 
-fi
-}
+    if [ "$lck" ]; then
+    	echo -e "sorry no lock has been detected u can run 1 to continue installation" 
+    else
+	sudo rm  /var/lib/dpkg/lock-frontend 
+	sudo rm /var/lib/dpkg/lock
+	sudo rm /var/cache/apt/archives/lock
+	sudo rm /var/lib/apt/lists/lock
+	for i in `seq  1 100`; do    # for 1 to 100, save cursor, restore, output, restore
+    printf "\033[s\033[u removing  lock in Progress: %s %3d %% \033[u" "${str:0:$(((i+1)/2))}" "$i"
+    sleep 0.1               # small delay
+    done
+	echo -e "\n sucess"
+    fi
+;;
+#############################################apt-https########################################################
+"install apt https")
+echo " changing apt to https from https makes the apt process faster"
+sudo apt-get install apt-transport-https -y
+echo " changing nameserver increases overall speed "
+echo -e " \n nameserver 8.8.8.8 \n nameserver 8.8.4.4 "
+echo " copy the code and replace it /etc/resolv.conf"
+echo "openning /etc/resolv.conf in 20 seconds"
+sleep 20
+echo " ctrl+x to save"
+sudo nano /etc/resolv.conf
+echo "changed resolv.conf and installed https for deb installation"
+;;
+#####################################quit######################################################################################
+"Quit")
+   break
+   ;;
+*) 
+echo "invalid option";
+;;
+
+    esac
+done
