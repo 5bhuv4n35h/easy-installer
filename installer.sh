@@ -29,7 +29,7 @@ echo -e "${GREEN}"
 
 
 ##################################installation starts ######################################
-options=("install passwordless sudo" "install packages" "remove-lock"  "install apt https" "fancy bash prompt installer" "Quit")
+options=("install passwordless sudo" "install packages" "remove-lock"  "install apt https" "fancy bash prompt installer" "upgradeos" "Quit")
 select opt in "${options[@]}"
 do
     case $opt in
@@ -320,6 +320,14 @@ echo " changing nameserver increases overall speed "
 sudo echo -e "  \n nameserver 8.8.8.8 \n  nameserver 8.8.4.1">> sudo /etc/resolv.conf
 sudo nano /etc/resolv.conf
 echo "changed resolv.conf and installed https for deb installation"
+;;
+#######upgradeos#############
+"upgradeos")
+sudo apt  update
+sudo apt list --upgradable
+sudo apt upgrade
+sudo apt dist-upgrade
+sudo apt autoremove
 ;;
 #######################fancy bash prompt ######################################################
 "fancy bash prompt installer")
