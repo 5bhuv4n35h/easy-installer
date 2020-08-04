@@ -29,7 +29,7 @@ echo -e "${GREEN}"
 
 
 ##################################installation starts ######################################
-options=("install passwordless sudo" "install packages" "remove-lock"  "install apt https" "fancy bash prompt installer" "upgradeos" "Quit")
+options=("install passwordless sudo" "install packages" "remove-lock"  "install apt https" "fancy bash prompt installer" "gitcollection" "upgradeos" "Quit")
 select opt in "${options[@]}"
 do
     case $opt in
@@ -73,8 +73,6 @@ if [ "$win" ]; then
 		sudo apt update
 		sudo apt install wine:i386
 		sudo apt install wine-bin:i386
-		sudo apt-get install wine32
-
 fi
 
 shel=$(dpkg -l | grep "shellter")
@@ -345,6 +343,165 @@ echo -e "completed upgrade "
 "fancy bash prompt installer")
 cd /tmp && git clone https://github.com/petobens/trueline.git && cd trueline &&echo 'source ~/trueline/trueline.sh' >> ~/.bashrc
 
+;;
+################git-collection#########################################################
+"gitcollection")
+cd ~/Desktop
+mkdir tools
+cd tools
+
+cat << "EOF"
+                                  __            __    __                         
+#                                /  |          /  |  /  |                        
+#    ______   __    __   ______  $$ |  ______  $$/  _$$ |_     ______    ______  
+#   /      \ /  \  /  | /      \ $$ | /      \ /  |/ $$   |   /      \  /      \ 
+#  /$$$$$$  |$$  \/$$/ /$$$$$$  |$$ |/$$$$$$  |$$ |$$$$$$/   /$$$$$$  |/$$$$$$  |
+#  $$    $$ | $$  $$<  $$ |  $$ |$$ |$$ |  $$ |$$ |  $$ | __ $$    $$ |$$ |  $$/ 
+#  $$$$$$$$/  /$$$$  \ $$ |__$$ |$$ |$$ \__$$ |$$ |  $$ |/  |$$$$$$$$/ $$ |      
+#  $$       |/$$/ $$  |$$    $$/ $$ |$$    $$/ $$ |  $$  $$/ $$       |$$ |      
+#   $$$$$$$/ $$/   $$/ $$$$$$$/  $$/  $$$$$$/  $$/    $$$$/   $$$$$$$/ $$/       
+#                      $$ |                                                      
+#                      $$ |                                                      
+#                      $$/                                                       
+EOF
+echo -e "mass git exploit cloner"
+mkdir windows_exploiter
+cd windows_exploiter
+git clone https://github.com/pentestmonkey/windows-privesc-check.git
+git clone https://github.com/bitsadmin/wesng.git
+git clone https://github.com/M4ximuss/Powerless.git
+# Windows Exploits (precompiled)
+git clone https://github.com/abatchy17/WindowsExploits.git
+# Arjun
+git clone https://github.com/s0md3v/Arjun.git
+# Powersploit
+git clone https://github.com/PowerShellMafia/PowerSploit.git
+
+# BloodHound Ingestors and Source
+git clone https://github.com/BloodHoundAD/BloodHound.git
+
+# windapsearch  - new go version
+git clone https://github.com/ropnop/go-windapsearch.git
+
+git clone https://github.com/Hackplayers/evil-winrm.git
+
+# windows kernel exploits
+git clone https://github.com/egre55/windows-kernel-exploits.git
+
+# PEAS Suite 
+git clone https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite.git
+
+# windows privesc check
+git clone https://github.com/pentestmonkey/windows-privesc-check.git
+
+# Windows Exploit Suggester Next Generation
+git clone https://github.com/bitsadmin/wesng.git
+
+cd ..
+mkdir linux_exploiter
+cd linux_exploiter
+git clone https://github.com/jondonas/linux-exploit-suggester-2.git
+pwd
+git clone https://github.com/pentestmonkey/unix-privesc-check.git
+pwd
+git clone https://github.com/sleventyeleven/linuxprivchecker.git
+pwd
+git clone https://github.com/Arr0way/linux-local-enumeration-script.git
+
+git clone  https://github.com/21y4d/nmapAutomator.git
+# enum4linux
+git clone https://labs.portcullis.co.uk/tools/enum4linux/
+
+# unix privesc check
+wget http://pentestmonkey.net/tools/unix-privesc-check/unix-privesc-check-1.4.tar.gz
+tar zxfv unix-privesc-check-1.4.tar.gz
+
+# Linux smart enumeration
+git clone https://github.com/diego-treitos/linux-smart-enumeration.git
+
+# Linenum
+git clone https://github.com/rebootuser/LinEnum.git
+
+# Linux priv checker
+git clone https://github.com/sleventyeleven/linuxprivchecker.git
+# kali lootbox
+git clone https://github.com/g0x0dvibes/kali-lootbox.git
+cd ..
+
+mkdir fuzzer 
+cd fuzzer
+pwd
+git clone https://github.com/wireghoul/dotdotpwn.git
+cd ..
+mkdir webdav
+cd webdav
+pwd
+git clone https://github.com/cldrn/davtest.git
+cd ..
+mkdir shellcode
+cd shellcode
+pwd
+git clone https://github.com/TheWover/donut.git
+cd ..
+mkdir powershell
+cd powershell
+pwd
+git clone https://github.com/EmpireProject/Empire.git
+git clone https://github.com/samratashok/nishang.git
+cd..
+mkdir android
+cd andorid
+git clone https://github.com/Screetsec/TheFatRat.git
+cd ..
+mkdir cms 
+cd cms
+git clone https://github.com/Tuhinshubhra/CMSeeK.git
+git clone https://github.com/droope/droopescan.git
+# AutoRecon
+git clone https://github.com/Tib3rius/AutoRecon.git
+
+
+
+# Nikto2 latest
+git clone https://github.com/sullo/nikto.git
+
+# p0wny shell
+git clone https://github.com/flozz/p0wny-shell.git
+cd ..
+
+mkdir privesc
+
+# Payload All The Things
+git clone https://github.com/swisskyrepo/PayloadsAllTheThings.git
+
+# SUID3NUM
+git clone https://github.com/Anon-Exploiter/SUID3NUM
+
+# Pspy
+git clone https://github.com/DominicBreuker/pspy.git
+
+
+# Privilege Escalation Awesome Scripts
+git clone https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite.git
+cd ...
+
+
+mkdir reconnisance
+
+# Fingerprint2 JS
+git clone https://github.com/Valve/fingerprintjs2.git
+
+# Interlace
+git clone https://github.com/codingo/Interlace.git
+# dirsearch
+git clone https://github.com/maurosoria/dirsearch.git
+
+# Reconnoitre
+git clone https://github.com/codingo/Reconnoitre.git
+
+cd ..
+
+echo -e "\n done !!!!!!!!!!!!!"
 ;;
 #####################################quit######################################################################################
 "Quit")
