@@ -1,5 +1,8 @@
 #                       easy-installer 
 
+## v1.1 
+#### added bash customisation using trueline
+
 ##                                SUBLIME-TEXT
 
 ![](https://cdn.worldvectorlogo.com/logos/sublime-text.svg)
