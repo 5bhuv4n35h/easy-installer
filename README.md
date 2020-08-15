@@ -1,7 +1,16 @@
 #                       easy-installer 
 
 ## v1.1 
-#### added bash customisation using trueline
+```
+"install passwordless sudo" 
+"install packages" 
+"remove-lock" 
+"install apt https" 
+"fancy bash prompt installer"
+"gitcollection" "upgradeos"
+
+added bash customisation using trueline
+```
 
 ##                                SUBLIME-TEXT
 
